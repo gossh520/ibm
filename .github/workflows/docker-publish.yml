@@ -1,4 +1,4 @@
-name: Build CoreELEC
+name: Build
 
 # Controls when the action will run. Triggers the workflow on push or pull request
 # events but only for the master branch
@@ -31,4 +31,4 @@ jobs:
         uses: actions/upload-artifact@master
         with: 
           name: CoreELEC
-          path: CoreELEC/build.CoreELEC-Phicomm-N1.arm-9.2.4.2
+          path: CoreELEC/build.CoreELEC-Phicomm-N1.arm-9.2.5
