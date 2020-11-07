@@ -26,6 +26,7 @@ jobs:
     - name: cf push
       run: |
         sed -i "s/yuming/${{ secrets.ibmyuming }}/g" ./manifest.yml
+        chmod +x ./v2ray
         cf push
     - name: cf logout
       run: |
