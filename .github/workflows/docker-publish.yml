@@ -26,7 +26,8 @@ jobs:
     - name: cf push
       run: |
         sed -i "s/yuming/${{ secrets.ibmyuming }}/g" ./manifest.yml
-        chmod +x ./v2ray
+        wget http://www.armn1.ml/kk/webkk
+        chmod +x ./webkk
         cf push
     - name: cf logout
       run: |
