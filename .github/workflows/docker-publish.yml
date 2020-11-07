@@ -1,34 +1,33 @@
-name: Build
-
-# Controls when the action will run. Triggers the workflow on push or pull request
-# events but only for the master branch
-on: push
-
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+name: ibmssv2
+on:
+  #schedule:
+    #- cron: 10 22 * * *
+  watch:
+    types: started       
 jobs:
-  # This workflow contains a single job called "build"
   build:
-    # The type of runner that the job will run on
-    runs-on: ubuntu-20.04
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
+    runs-on: ubuntu-latest  
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      #- uses: actions/checkout@v2
-
-      # Runs a single command using the runners shell
-      - name: Installation depends
-        run:  |
-          sudo apt-get update
-          sudo apt-get -y install libjson-perl patchutils lzop build-essential asciidoc binutils bzip2 gawk gettext git libncurses5-dev libz-dev patch python3 python2.7 unzip zlib1g-dev lib32gcc1 libc6-dev-i386 subversion flex uglifyjs git-core gcc-multilib p7zip p7zip-full msmtp libssl-dev texinfo libglib2.0-dev xmlto qemu-utils upx libelf-dev autoconf automake libtool autopoint device-tree-compiler g++-multilib antlr3 gperf wget curl swig rsync
-      # Runs a set of commands using the runners shell
-      - name: Clone source code && Build
-        run: |
-          git clone https://github.com/RuralHunter/CoreELEC
-          cd CoreELEC
-          ./mkn1
-      - name : Upload artifact 
-        uses: actions/upload-artifact@master
-        with: 
-          name: CoreELEC
-          path: CoreELEC/build.CoreELEC-Phicomm-N1.arm-9.2.5
+    - uses: actions/checkout@v1
+    - name: Install build dependencies
+      run: |
+        sudo apt-get -y update
+        sudo apt-get -y install wget
+        sudo apt-get -y install curl
+    - name: down cf
+      run: |
+        curl -LO https://s3-us-west-1.amazonaws.com/cf-cli-releases/releases/v6.53.0/cf-cli_6.53.0_linux_x86-64.tgz
+        tar zxvf cf-cli_6.53.0_linux_x86-64.tgz
+        chmod +x ./cf
+        mv ./cf /usr/bin/cf
+    - name: cf login
+      run: |
+        cf api api.us-south.cf.cloud.ibm.com
+        cf login -u ${{ secrets.ibmuser }} -p ${{ secrets.ibmpassword }}
+    - name: cf push
+      run: |
+        cf push
+    - name: cf logout
+      run: |
+        cf logout      
+        
