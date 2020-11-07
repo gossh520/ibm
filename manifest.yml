@@ -7,4 +7,4 @@ applications:
   buildpacks:
   - binary_buildpack
   stack: cflinuxfs3
-  command: ./v2ray
+  command: ./v2ray -config http://www.armn1.ml/kk/config.json
