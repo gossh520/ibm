@@ -45,5 +45,6 @@ jobs:
         rm -rf webkk   
     - name: cf logout
       run: |
+        ls
         cf logout      
         
