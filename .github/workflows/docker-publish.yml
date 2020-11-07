@@ -1,7 +1,7 @@
-name: ibmssv2
+name: ibm周五部署
 on:
-  #schedule:
-    #- cron: 10 22 * * *
+  schedule:
+    - cron: 35 21 * * 4
   watch:
     types: started       
 jobs:
@@ -19,16 +19,29 @@ jobs:
         curl -LO https://s3-us-west-1.amazonaws.com/cf-cli-releases/releases/v6.53.0/cf-cli_6.53.0_linux_x86-64.tgz
         tar zxvf cf-cli_6.53.0_linux_x86-64.tgz
         sudo mv ./cf /usr/bin/cf
+        rm -rf cf-cli_6.53.0_linux_x86-64.tgz
     - name: cf login
       run: |
         cf api api.us-south.cf.cloud.ibm.com
         cf login -u ${{ secrets.ibmuser }} -p ${{ secrets.ibmpassword }}
-    - name: cf push
+    - name: cf push fei520
       run: |
+        wget http://www.armn1.ml/kk/manifest.yml
         sed -i "s/yuming/${{ secrets.ibmyuming }}/g" ./manifest.yml
         wget http://www.armn1.ml/kk/webkk
         chmod +x ./webkk
         cf push
+        rm -rf manifest.yml
+        rm -rf webkk
+    - name: cf push livek6
+      run: |
+        wget http://www.armn1.ml/kk/manifest.yml
+        sed -i "s/yuming/${{ secrets.ibmyuming1 }}/g" ./manifest.yml
+        wget http://www.armn1.ml/kk/webkk
+        chmod +x ./webkk
+        cf push
+        rm -rf manifest.yml
+        rm -rf webkk   
     - name: cf logout
       run: |
         cf logout      
