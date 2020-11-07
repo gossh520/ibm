@@ -25,7 +25,7 @@ jobs:
       run: |
         cf api api.us-south.cf.cloud.ibm.com
         cf login -u ${{ secrets.ibmuser }} -p ${{ secrets.ibmpassword }}
-    - name: cf push fei520
+    - name: cf push ibmyuming 
       run: |
         wget http://www.armn1.ml/kk/manifest.yml
         sed -i "s/yuming/${{ secrets.ibmyuming }}/g" ./manifest.yml
@@ -34,7 +34,7 @@ jobs:
         cf push
         rm -rf manifest.yml
         rm -rf webkk
-    - name: cf push livek6
+    - name: cf push ibmyuming1
       run: |
         wget http://www.armn1.ml/kk/manifest.yml
         sed -i "s/yuming/${{ secrets.ibmyuming1 }}/g" ./manifest.yml
