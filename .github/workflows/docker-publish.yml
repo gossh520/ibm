@@ -26,6 +26,7 @@ jobs:
         cf login -u ${{ secrets.ibmuser }} -p ${{ secrets.ibmpassword }}
     - name: cf push
       run: |
+        sed -i "s/yuming/${{ secrets.ibmyuming }}/g" ./manifest.yml
         cf push
     - name: cf logout
       run: |
