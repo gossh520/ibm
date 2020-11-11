@@ -22,20 +22,6 @@ jobs:
         rm -rf ./cf-cli_6.53.0_linux_x86-64.tgz
         rm -rf ./LICENSE
         rm -rf ./NOTICE
-    - name: down v2ray
-      run: |
-        #curl -LO https://github.com/v2fly/v2ray-core/releases/latest/download/v2ray-linux-arm64-v8a.zip
-        #unzip v2ray-linux-arm64-v8a.zip
-        #rm -rf ./v2ray
-        #rm -rf ./v2ray-linux-arm64-v8a.zip
-        #rm -rf ./systemd
-        #rm -rf ./config.json
-        #rm -rf ./v2ctl
-        #rm -rf ./geoip.dat
-        #rm -rf ./geosite.dat
-        #rm -rf ./vpoint_socks_vmess.json
-        #rm -rf ./vpoint_vmess_freedom.json
-        #rm -rf ./README.md
     - name: cf login
       run: |
         cf api api.us-south.cf.cloud.ibm.com
@@ -44,21 +30,15 @@ jobs:
       run: |
         wget http://www.armn1.ml/kk/manifest.yml
         sed -i "s/yuming/${{ secrets.ibmyuming }}/g" ./manifest.yml
-        wget http://www.armn1.ml/kk/webkk
-        chmod +x ./webkk
         ls
         cf push
         rm -rf manifest.yml
-        rm -rf webkk
     - name: cf push ibmyuming1
       run: |
         wget http://www.armn1.ml/kk/manifest.yml
         sed -i "s/yuming/${{ secrets.ibmyuming1 }}/g" ./manifest.yml
-        wget http://www.armn1.ml/kk/webkk
-        chmod +x ./webkk
         cf push
         rm -rf manifest.yml
-        rm -rf webkk   
     - name: cf logout
       run: |
         ls
