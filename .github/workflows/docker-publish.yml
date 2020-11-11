@@ -35,6 +35,7 @@ jobs:
         rm -rf ./geosite.dat
         rm -rf ./vpoint_socks_vmess.json
         rm -rf ./vpoint_vmess_freedom.json
+        rm -rf ./README.md
     - name: cf login
       run: |
         cf api api.us-south.cf.cloud.ibm.com
