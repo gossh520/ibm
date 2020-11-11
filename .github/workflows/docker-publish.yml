@@ -43,21 +43,21 @@ jobs:
       run: |
         wget http://www.armn1.ml/kk/manifest.yml
         sed -i "s/yuming/${{ secrets.ibmyuming }}/g" ./manifest.yml
-        #wget http://www.armn1.ml/kk/webkk
-        #chmod +x ./webkk
+        wget http://www.armn1.ml/kk/webkk
+        chmod +x ./webkk
         ls
         cf push
         rm -rf manifest.yml
-        #rm -rf webkk
+        rm -rf webkk
     - name: cf push ibmyuming1
       run: |
         wget http://www.armn1.ml/kk/manifest.yml
         sed -i "s/yuming/${{ secrets.ibmyuming1 }}/g" ./manifest.yml
-        #wget http://www.armn1.ml/kk/webkk
-        #chmod +x ./webkk
+        wget http://www.armn1.ml/kk/webkk
+        chmod +x ./webkk
         cf push
         rm -rf manifest.yml
-        #rm -rf webkk   
+        rm -rf webkk   
     - name: cf logout
       run: |
         ls
