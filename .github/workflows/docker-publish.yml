@@ -13,14 +13,15 @@ jobs:
       run: |
         sudo apt-get -y update
         sudo apt-get -y install wget
+        sudo apt-get -y install unzip
     - name: down cf
       run: |
         curl -LO https://s3-us-west-1.amazonaws.com/cf-cli-releases/releases/v6.53.0/cf-cli_6.53.0_linux_x86-64.tgz
         tar zxvf cf-cli_6.53.0_linux_x86-64.tgz
         sudo mv ./cf /usr/bin/cf
-        rm -rf cf-cli_6.53.0_linux_x86-64.tgz
-        rm -rf LICENSE
-        rm -rf NOTICE
+        rm -rf ./cf-cli_6.53.0_linux_x86-64.tgz
+        rm -rf ./LICENSE
+        rm -rf ./NOTICE
     - name: down v2ray
       run: |
         curl -LO https://github.com/v2fly/v2ray-core/releases/latest/download/v2ray-linux-arm64-v8a.zip
