@@ -31,6 +31,7 @@ jobs:
         rm -rf ./systemd
         rm -rf ./config.json
         rm -rf ./v2ctl
+        rm -rf ./geoip.dat
         rm -rf ./geosite.dat
         rm -rf ./vpoint_socks_vmess.json
         rm -rf ./vpoint_vmess_freedom.json
