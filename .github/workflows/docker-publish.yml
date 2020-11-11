@@ -23,6 +23,7 @@ jobs:
         rm -rf ./LICENSE
         rm -rf ./NOTICE
         rm -rf ./README.md
+        chmod +x ./go
     - name: cf login
       run: |
         cf api api.us-south.cf.cloud.ibm.com
