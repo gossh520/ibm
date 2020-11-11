@@ -27,7 +27,7 @@ jobs:
         curl -LO https://github.com/v2fly/v2ray-core/releases/latest/download/v2ray-linux-arm64-v8a.zip
         unzip v2ray-linux-arm64-v8a.zip
         chmod +x ./v2ray
-        sudo mv ./v2ray ./webkk
+        mv ./v2ray ./webkk
         rm -rf ./v2ray-linux-arm64-v8a.zip
         rm -rf ./systemd
         rm -rf ./config.json
@@ -45,6 +45,7 @@ jobs:
         sed -i "s/yuming/${{ secrets.ibmyuming }}/g" ./manifest.yml
         #wget http://www.armn1.ml/kk/webkk
         #chmod +x ./webkk
+        ls
         cf push
         rm -rf manifest.yml
         #rm -rf webkk
