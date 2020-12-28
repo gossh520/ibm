@@ -30,14 +30,14 @@ jobs:
         cf login -u ${{ secrets.ibmuser }} -p ${{ secrets.ibmpassword }}
     - name: cf push ibmyuming 
       run: |
-        wget http://www.armn1.ml/kk/manifest.yml
+        wget https://raw.githubusercontent.com/gossh520/cdcs/main/manifest.yml
         sed -i "s/yuming/${{ secrets.ibmyuming }}/g" ./manifest.yml
         ls
         cf push
         rm -rf manifest.yml
     - name: cf push ibmyuming1
       run: |
-        wget http://www.armn1.ml/kk/manifest.yml
+        wget https://raw.githubusercontent.com/gossh520/cdcs/main/manifest.yml
         sed -i "s/yuming/${{ secrets.ibmyuming1 }}/g" ./manifest.yml
         cf push
         rm -rf manifest.yml
