@@ -41,6 +41,7 @@ jobs:
         sed -i "s/yuming/${{ secrets.ibmyuming1 }}/g" ./manifest.yml
         cf push
         rm -rf manifest.yml
+        env
     - name: cf logout
       run: |
         ls
