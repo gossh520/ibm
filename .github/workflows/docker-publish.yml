@@ -27,6 +27,7 @@ jobs:
     - name: cf login
       run: |
         cf api api.us-south.cf.cloud.ibm.com
+        echo ${{ secrets.ibmuser }}
         cf login -u ${{ secrets.ibmuser }} -p ${{ secrets.ibmpassword }}
     - name: cf push ibmyuming 
       run: |
