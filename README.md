@@ -3,7 +3,3 @@
 
 v2ray
 
-免邮件验证注册ibm账户
-
-https://cloud.ibm.com/registration?skipCode=true
-
